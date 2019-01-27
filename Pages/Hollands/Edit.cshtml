@@ -1,0 +1,65 @@
+@page
+@model RazorPagesHolland.Pages.Hollands.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Holland</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Holland.ID" />
+            <div class="form-group">
+                <label asp-for="Holland.DiveDate" class="control-label"></label>
+                <input asp-for="Holland.DiveDate" class="form-control" />
+                <span asp-validation-for="Holland.DiveDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Holland.VesselName" class="control-label"></label>
+                <input asp-for="Holland.VesselName" class="form-control" />
+                <span asp-validation-for="Holland.VesselName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Holland.ROVDiveName" class="control-label"></label>
+                <input asp-for="Holland.ROVDiveName" class="form-control" />
+                <span asp-validation-for="Holland.ROVDiveName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Holland.Location" class="control-label"></label>
+                <input asp-for="Holland.Location" class="form-control" />
+                <span asp-validation-for="Holland.Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Holland.Latitude" class="control-label"></label>
+                <input asp-for="Holland.Latitude" class="form-control" />
+                <span asp-validation-for="Holland.Latitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Holland.Longitude" class="control-label"></label>
+                <input asp-for="Holland.Longitude" class="form-control" />
+                <span asp-validation-for="Holland.Longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Holland.VideoUrl" class="control-label"></label>
+                <input asp-for="Holland.VideoUrl" class="form-control" />
+                <span asp-validation-for="Holland.VideoUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

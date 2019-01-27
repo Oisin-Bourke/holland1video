@@ -1,0 +1,117 @@
+@page
+@model RazorPagesHolland.Pages.Hollands.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Holland</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Holland.DiveDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Holland.DiveDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Holland.VesselName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Holland.VesselName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Holland.ROVDiveName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Holland.ROVDiveName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Holland.Location)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Holland.Location)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Holland.Latitude)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Holland.Latitude)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Holland.Longitude)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Holland.Longitude)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dd class="embedded-item">
+            <div id="player"></div>
+            <!--<iframe width="560" height="315" src=@* @Html.Raw(Model.Holland.VideoUrl) *@ frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+        </dd>
+        <dd class="embedded-item">
+            <div id="map"></div>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Holland.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+
+<script>
+
+    // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player) after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '315',
+          width: '560',
+          videoId: '@Html.Raw(Model.Holland.VideoUrl)',
+          events: {
+            'onReady': onPlayerReady
+             //add more events...
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+</script>
+
+<script>
+function initMap() {
+  var hollandLocation = {lat: @Html.Raw(Model.Holland.Latitude) , lng: @Html.Raw(Model.Holland.Longitude)};
+
+  var map = new google.maps.Map(
+      document.getElementById('map'), {
+      zoom: 5.8,
+      mapTypeId: 'satellite',
+      streetViewControl: false,
+      center: hollandLocation});
+
+  var marker = new google.maps.Marker({
+  position: hollandLocation,
+  label:"H",
+  map: map
+  });
+}
+</script>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVHiK8K4NbQ01iqcB9GaSbkp1DLWGZNvM&callback=initMap">
+</script>
