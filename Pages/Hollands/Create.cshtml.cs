@@ -18,19 +18,21 @@ namespace RazorPagesHolland.Pages.Hollands
             _context = context;
         }
 
+        //The OnGet method initializes any state needed for the page
         public IActionResult OnGet()
         {
             return Page();
         }
 
-        [BindProperty]
+        [BindProperty]//The Movie property uses the [BindProperty] attribute to opt-in to model binding. 
         public Holland Holland { get; set; }
 
+        //The OnPostAsync method is run when the page posts form data
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
-                return Page();
+                return Page(); //he Page method creates a PageResult object that renders the Create.cshtml page.
             }
 
             _context.Holland.Add(Holland);

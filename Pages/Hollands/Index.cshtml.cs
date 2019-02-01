@@ -34,7 +34,7 @@ namespace RazorPagesHolland.Pages.Hollands
         public string DiveNameSelect { get; set; }
 
 
-
+        /* When a request is made for the page this method initialize the state for the page.*/
         public async Task OnGetAsync()
         {
             //using LINQ query
@@ -66,8 +66,6 @@ namespace RazorPagesHolland.Pages.Hollands
                 hollands = hollands.Where(y => y.ROVDiveName == DiveNameSelect);
             }
 
-
-
             Holland = await hollands.ToListAsync();
 
             VesselNames = new SelectList(await vesselQuery.Distinct().ToListAsync());//project the distinct vessel names
@@ -75,6 +73,22 @@ namespace RazorPagesHolland.Pages.Hollands
             DiveNames = new SelectList(await diveQuery.Distinct().ToListAsync());
 
             //Holland = await _context.Holland.ToListAsync();
+
+
+            string markers = "[";
+
+            foreach(var item in Holland)
+            {
+                markers += "{";
+                markers += string.Format("'title': '{0}',",item.VesselName);
+                markers += string.Format("'ID': '{0}',", item.ID);
+                markers += string.Format("'lat': '{0}',", item.Latitude);
+                markers += string.Format("'lng': '{0}',", item.Longitude);
+                markers += "},";
+            }
+
+            markers += "];";
+             
         }
     }
 }

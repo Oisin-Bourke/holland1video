@@ -62,7 +62,19 @@ body {
     margin: 5px;
 }
 
+.tab-content{
+    margin-top: 10px;
+}
+
 #map {
     height: 315px;
-    width: 560px; 
+    width: 100%;
 }
+
+#selectionMap {
+    height: 500px;
+    width: 100%;
+}
+
+
+
