@@ -66,6 +66,11 @@ body {
     margin-top: 10px;
 }
 
+.social-icon{
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
 #map {
     height: 315px;
     width: 100%;

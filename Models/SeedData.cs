@@ -27,41 +27,41 @@ namespace RazorPagesHolland.Models
 
                     new Holland
                     {
-                        VesselName = "Celtic Explorer",
+                        VesselName = "Seed Data",
                         ROVDiveName = "Exploration",
                         Location = "North Atlantic Ocean",
                         DiveDate = DateTime.Parse("2018-01-01"),
-                        VideoUrl = "https://www.youtube.com/embed/aAcQPBcCsyY",
+                        VideoUrl = "aAcQPBcCsyY",
                         Latitude = 49.443101f,
                         Longitude = -10.770815f
                     },
                     new Holland
                     {
-                        VesselName = "Celtic Explorer",
+                        VesselName = "Seed Data",
                         ROVDiveName = "Exploration",
                         Location = "North Atlantic Ocean",
                         DiveDate = DateTime.Parse("2018-01-01"),
-                        VideoUrl = "https://www.youtube.com/embed/aAcQPBcCsyY",
+                        VideoUrl = "aAcQPBcCsyY",
                         Latitude = 49.443101f,
                         Longitude = -10.770815f
                     },
                     new Holland
                     {
-                        VesselName = "Celtic Explorer",
+                        VesselName = "Seed Data",
                         ROVDiveName = "Exploration",
                         Location = "North Atlantic Ocean",
                         DiveDate = DateTime.Parse("2018-01-01"),
-                        VideoUrl = "https://www.youtube.com/embed/aAcQPBcCsyY",
+                        VideoUrl = "aAcQPBcCsyY",
                         Latitude = 49.443101f,
                         Longitude = -10.770815f
                     },
                     new Holland
                     {
-                        VesselName = "Celtic Explorer",
+                        VesselName = "Seed Data",
                         ROVDiveName = "Exploration",
                         Location = "North Atlantic Ocean",
                         DiveDate = DateTime.Parse("2018-01-01"),
-                        VideoUrl = "https://www.youtube.com/embed/aAcQPBcCsyY",
+                        VideoUrl = "aAcQPBcCsyY",
                         Latitude = 49.443101f,
                         Longitude = -10.770815f
                     }

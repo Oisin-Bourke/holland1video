@@ -15,6 +15,7 @@
               crossorigin="anonymous"
               integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE="/>
     </environment>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -48,8 +49,17 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2019 - Holland I Video Catalogue - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            <div class="row">
+                <ul class="nav col">
+                    <li> &copy; 2019 - Holland I Video Catalogue -<a class="nav-item" asp-area="" asp-page="/Privacy">Privacy</a></li>
+                </ul>
+                <ul class="nav justify-content-end col">
+                    <li><a href="#" target="_blank" class="nav-item"><i class="fab fa-twitter fa-2x social-icon" aria-hidden="true"></i></a></li>
+                    <li><a href="#" target="_blank" class="nav-item"><i class="fab fa-youtube fa-2x social-icon" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
         </div>
+
     </footer>
 
     <environment include="Development">

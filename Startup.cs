@@ -37,7 +37,7 @@ namespace RazorPagesHolland
 
 
             services.AddDbContextPool<Models.RazorPagesHollandContext>( // replace "YourDbContext" with the class name of your DbContext
-                options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+                options => options.UseMySql(Configuration.GetConnectionString("NUIGConnection")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

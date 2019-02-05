@@ -13,9 +13,9 @@ namespace RazorPagesHolland.Pages.Hollands
 {
     public class IndexModel : PageModel
     {
-        private readonly RazorPagesHolland.Models.RazorPagesHollandContext _context;
+        private readonly RazorPagesHollandContext _context;
 
-        public IndexModel(RazorPagesHolland.Models.RazorPagesHollandContext context)
+        public IndexModel(RazorPagesHollandContext context)
         {
             _context = context;
         }
@@ -32,6 +32,8 @@ namespace RazorPagesHolland.Pages.Hollands
         public SelectList DiveNames { get; set; }
         [BindProperty(SupportsGet = true)]
         public string DiveNameSelect { get; set; }
+
+        public static string markers;//a class varaible to hold the markers
 
 
         /* When a request is made for the page this method initialize the state for the page.*/
@@ -74,13 +76,13 @@ namespace RazorPagesHolland.Pages.Hollands
 
             //Holland = await _context.Holland.ToListAsync();
 
+            //gather data for the markers in json format:
+            markers = "[";
 
-            string markers = "[";
-
-            foreach(var item in Holland)
+            foreach (var item in Holland)
             {
                 markers += "{";
-                markers += string.Format("'title': '{0}',",item.VesselName);
+                markers += string.Format("'title': '{0}',", item.VesselName);
                 markers += string.Format("'ID': '{0}',", item.ID);
                 markers += string.Format("'lat': '{0}',", item.Latitude);
                 markers += string.Format("'lng': '{0}',", item.Longitude);
@@ -88,7 +90,8 @@ namespace RazorPagesHolland.Pages.Hollands
             }
 
             markers += "];";
-             
+
+
         }
     }
-}
+} 
