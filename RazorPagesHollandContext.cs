@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿//the DB context for Holland 
+using Microsoft.EntityFrameworkCore;
 
 namespace RazorPagesHolland.Models
 

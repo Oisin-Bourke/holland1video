@@ -18,11 +18,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace RazorPagesHolland.Pages.Hollands
 {
-    public class IndexModel : PageModel
+    public class AdminModel : PageModel
     {
         private readonly RazorPagesHollandContext _context;
 
-        public IndexModel(RazorPagesHollandContext context)
+        public AdminModel(RazorPagesHollandContext context)
         {
             _context = context;
         }
@@ -80,24 +80,6 @@ namespace RazorPagesHolland.Pages.Hollands
             VesselNames = new SelectList(await vesselQuery.Distinct().ToListAsync());//project the distinct vessel names
 
             DiveNames = new SelectList(await diveQuery.Distinct().ToListAsync());
-
-            //Holland = await _context.Holland.ToListAsync();
-
-            //gather data for the markers in json format and assign to string 'markers':
-            markers = "[";
-
-            foreach (var item in Holland)
-            {
-                markers += "{";
-                markers += string.Format("'title': '{0}',", item.VesselName);
-                markers += string.Format("'ID': '{0}',", item.ID);
-                markers += string.Format("'lat': '{0}',", item.Latitude);
-                markers += string.Format("'lng': '{0}',", item.Longitude);
-                markers += "},";
-            }
-
-            markers += "];";
-
 
         }
     }

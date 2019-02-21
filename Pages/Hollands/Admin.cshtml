@@ -1,35 +1,23 @@
-@* Razor can transition from HTML into C# or into Razor-specific markup.
-    When an @ symbol is followed by a Razor reserved keyword, it transitions
-    into Razor-specific markup, otherwise it transitions into C#.*@
-
-@* the @page makes the file into an MVC action, which means that it can handle requests*@
-
 @page
 
-@*The @model directive specifies the type of the model passed to the Razor Page.*@
-
-@model RazorPagesHolland.Pages.Hollands.IndexModel
-
-@*The { and } characters enclose a block of C# code.*@
+@model RazorPagesHolland.Pages.Hollands.AdminModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Admin";
 }
 
-<h1>ROV Holland I Video Catalogue</h1>
+<p>Administrator Page</p>
 
-<!--
 <p>
-    <a asp-page="Create">Create New Entry</a>
+    <a class="btn btn-success" asp-page="Create">New Entry</a>
 </p>
-    -->
 
 <div class="tab-container">
 
     <!-- Nav tabs -->
     <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
         <li class="nav-item" role="presentation"><a class="nav-link active" href="#listView" aria-controls="listView" role="tab" data-toggle="tab">List View</a></li>
-        <li class="nav-item" role="presentation"><a class="nav-link" href="#mapView" aria-controls="mapView" role="tab" data-toggle="tab">Map View</a></li>
+        <!--<li class="nav-item" role="presentation"><a class="nav-link" href="#mapView" aria-controls="mapView" role="tab" data-toggle="tab">Map View</a></li>-->
     </ul>
 
     <!-- Tab pane -->
@@ -63,7 +51,10 @@
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.Holland[0].DiveDate) @*The DisplayNameFor HTML Helper inspects the Title property referenced in the lambda expression to determine the display name. *@
+                            @Html.DisplayNameFor(model => model.Holland[0].ID)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Holland[0].DiveDate)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.Holland[0].VesselName)
@@ -91,6 +82,9 @@
                     {
                         <tr>
                             <td>
+                                @Html.DisplayFor(modelItem => item.ID)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.DiveDate)
                             </td>
                             <td>
@@ -109,73 +103,34 @@
                                 @Html.DisplayFor(modelItem => item.Longitude)
                             </td>
                             <td>
-                                <iframe width="300" height="200" src="https://www.youtube.com/embed/@Html.Raw(item.VideoUrl)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <!--<iframe width="300" height="200" src="https://www.youtube.com/embed/@Html.Raw(item.VideoUrl)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+                                @Html.DisplayFor(modelItem => item.VideoUrl)
                             </td>
                             <td>
-                                <!--
                                 <p>
-                                    <a class="btn btn-light" asp-page="./Edit" asp-route-id="@item.ID">Edit</a>
+                                    <a class="btn btn-info" asp-page="./Edit" asp-route-id="@item.ID">Edit</a>
                                 </p>
-                                -->
+                                <!--
                                 <p>
                                     <a class="btn btn-success" asp-page="./Details" asp-route-id="@item.ID">Details</a>
                                 </p>
-                                <!--
-                                <p>
-                                    <a class="btn btn-light" asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-                                </p>
                                 -->
+                                <p>
+                                    <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                                </p>
                             </td>
                         </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <!-- Tab pane -->
-            <div role="tabpanel" class="tab-pane" id="mapView">
-                <div class="row">
-                    <div class="col-md-8 offset-md-2"></div>
-                    <div class="embed-responsive embed-responsive-16by9" id="selectionMap"></div>
-                </div>
-            </div>
+                    }
+                </tbody>
+            </table>
         </div>
+        <!-- Tab pane -->
+        <!--
+        <div role="tabpanel" class="tab-pane" id="mapView">
+            <div class="row">
+                <div class="col-md-8 offset-md-2"></div>
+                <div class="embed-responsive embed-responsive-16by9" id="selectionMap"></div>
+            </div>
+        </divID         -->
     </div>
-<script language="javascript">
-        var markers = @Html.Raw(@IndexModel.markers);
-
-        window.onload = function () {
-            var mapOptions = {
-                center: new google.maps.LatLng(markers[0].lat, markers[0].lng),//centre on 1st marker
-                zoom: 5,
-                streetViewControl: false,
-                mapTypeId: 'satellite'
-            };
-
-            var infoWindow = new google.maps.InfoWindow();
-
-            var map = new google.maps.Map(document.getElementById("selectionMap"), mapOptions);
-
-            for (i = 0; i < markers.length; i++) {
-                var data = markers[i]
-                var myLatlng = new google.maps.LatLng(data.lat, data.lng);
-                var marker = new google.maps.Marker({
-                    position: myLatlng,
-                    map: map,
-                    label:"H",
-                    title: data.title
-                });
-
-                (function (marker, data) {
-                    google.maps.event.addListener(marker, "click", function (e) {
-                        infoWindow.setContent('<a href="@Url.Page("Details")?id=' + data.ID + '">Details</a>');
-                        infoWindow.open(map, marker);
-
-                    });
-                })(marker, data);
-            }
-        }
-</script>
-
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVHiK8K4NbQ01iqcB9GaSbkp1DLWGZNvM&callback=initMap">
-    </script>
+</div>

@@ -1,3 +1,5 @@
+//Razor Pages is enabled here
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,11 +37,13 @@ namespace RazorPagesHolland
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //Connection strings: "NUIGConnection" or "DefaultConnection" (local) 
+
 
             services.AddDbContextPool<Models.RazorPagesHollandContext>( // replace "YourDbContext" with the class name of your DbContext
-                options => options.UseMySql(Configuration.GetConnectionString("NUIGConnection")));
+                options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);//this provides support for controllers
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

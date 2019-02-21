@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
-//defining the schema
+//defining the schema or 'data model'
 
 namespace RazorPagesHolland.Models
 {
@@ -25,7 +25,6 @@ namespace RazorPagesHolland.Models
         public DateTime DiveDate { get; set; }
 
         [Display(Name = "Video")]
-        //[DataType(DataType.Url)]
         public string VideoUrl { get; set; }
 
         [Column(TypeName = "float(10, 6)")]
