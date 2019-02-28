@@ -5,11 +5,9 @@
 @* the @page makes the file into an MVC action, which means that it can handle requests*@
 
 @page
-
 @*The @model directive specifies the type of the model passed to the Razor Page.*@
 
 @model RazorPagesHolland.Pages.Hollands.IndexModel
-
 @*The { and } characters enclose a block of C# code.*@
 
 @{
@@ -127,19 +125,19 @@
                                 -->
                             </td>
                         </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <!-- Tab pane -->
-            <div role="tabpanel" class="tab-pane" id="mapView">
-                <div class="row">
-                    <div class="col-md-8 offset-md-2"></div>
-                    <div class="embed-responsive embed-responsive-16by9" id="selectionMap"></div>
-                </div>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- Tab pane -->
+        <div role="tabpanel" class="tab-pane" id="mapView">
+            <div class="row">
+                <div class="col-md-8 offset-md-2"></div>
+                <div class="embed-responsive embed-responsive-16by9" id="selectionMap"></div>
             </div>
         </div>
     </div>
+</div>
 <script language="javascript">
         var markers = @Html.Raw(@IndexModel.markers);
 
@@ -176,6 +174,6 @@
         }
 </script>
 
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVHiK8K4NbQ01iqcB9GaSbkp1DLWGZNvM&callback=initMap">
-    </script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVHiK8K4NbQ01iqcB9GaSbkp1DLWGZNvM&callback=initMap">
+</script>

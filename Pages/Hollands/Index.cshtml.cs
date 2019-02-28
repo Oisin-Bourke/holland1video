@@ -40,7 +40,7 @@ namespace RazorPagesHolland.Pages.Hollands
         [BindProperty(SupportsGet = true)]
         public string DiveNameSelect { get; set; }
 
-        public static string markers;//a class varaible to hold the markers
+        public static string markers;//a class varaible to hold the map markers
 
 
         /* When a request is made for the page this method initialize the state for the page.==> same as onGet while onPost handles form submissions*/
