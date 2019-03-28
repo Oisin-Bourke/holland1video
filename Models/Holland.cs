@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
-//defining the schema or 'data model'
+//defining the schema or 'data model' for Holland ROV Video data
 
 namespace RazorPagesHolland.Models
 {
@@ -23,6 +23,7 @@ namespace RazorPagesHolland.Models
         [Required]
         public string Location { get; set; }
 
+        //auto-required 
         [Display(Name = "Dive Date")]
         [DataType(DataType.Date)]
         public DateTime DiveDate { get; set; }
@@ -31,9 +32,11 @@ namespace RazorPagesHolland.Models
         [Display(Name = "Video")]
         public string VideoUrl { get; set; }
 
+        //auto-required
         [Column(TypeName = "float(10, 6)")]
         public float Latitude { get; set; }
 
+        //auto-required
         [Column(TypeName = "float(10, 6)")]
         public float Longitude { get; set; }
 
