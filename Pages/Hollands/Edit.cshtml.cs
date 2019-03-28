@@ -63,7 +63,7 @@ namespace RazorPagesHolland.Pages.Hollands
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Admin");
         }
 
         private bool HollandExists(int id)

@@ -12,18 +12,22 @@ namespace RazorPagesHolland.Models
 
         public int ID { get; set; }//primary key
 
+        [Required]
         [Display(Name ="Vessel Name")]
         public string VesselName { get; set; }
 
+        [Required]
         [Display(Name = "ROV Dive Name")]
         public string ROVDiveName { get; set; }
 
+        [Required]
         public string Location { get; set; }
 
         [Display(Name = "Dive Date")]
         [DataType(DataType.Date)]
         public DateTime DiveDate { get; set; }
 
+        [Required]
         [Display(Name = "Video")]
         public string VideoUrl { get; set; }
 

@@ -1,4 +1,4 @@
-﻿//alert ("cors_upload.js");
+﻿alert ("cors_upload.js");
 
 /*
 Copyright 2015 Google Inc. All Rights Reserved.

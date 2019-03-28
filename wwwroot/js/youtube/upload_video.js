@@ -51,9 +51,9 @@ var UploadVideo = function() {
   /**
    * The id of the new video.
    *
-   * @attribute videoId
-   * @type string
-   * @default ''
+   * attribute videoId
+   * type string
+   * default ''
    */
 
   this.videoId = '';
@@ -100,8 +100,7 @@ function getDiveDate(){     diveDate = document.getElementById("DiveDate").val
 
 var vesselName;
 
-function getVesselName(){     vesselName = document.getElementById("VesselName").value;
-    console.log(vesselName); }
+function getVesselName(){     vesselName = document.getElementById("VesselName").value; }
 
 var diveName;
 
@@ -117,19 +116,24 @@ function getLatitude(){     lat = document.getElementById("Latitude").value; �
 
 function getLongitude(){     lng = document.getElementById("Longitude").value;  }
 
+
 var titleText;
 
 var descriptionText;
 
-function display(){
+function setTitleAndDescriptionText(){
 
-titleText = "ROV Holland I: " + diveName;
+    titleText = "ROV Holland I: " + diveName;
 
-descriptionText = "The Marine Institute's Remotely Operated Vehicle (ROV) Holland I, launched from " + vesselName + " in the " + diveLocation + "(lat " + lat + "," + "lng " + lng + "), during a " + diveName + " dive mission. Dive date: " + diveDate;   
+    descriptionText = "The Marine Institute operates the Remotely Operated Vehicle (ROV) Holland I from its own research vessels" 
+        + "and from vessels operated by other institutions. The Holland I is equipped with a wide range of scientific research devices,"
+        + "including a high definition camera system.\n"  
+        + "This footage was captured during a " + diveName + " mission on " + diveDate + ".  " 
+        + "The ROV was launched from " + vesselName + " in the " + diveLocation + " (lat " + lat + ", " + "lng " + lng + ").";  
 
-console.log(titleText);
+console.log("Set: "+titleText);
 
-console.log(descriptionText);
+console.log("Set: "+descriptionText);
 
 }
 
@@ -141,9 +145,10 @@ console.log(descriptionText);
 */
 
 UploadVideo.prototype.uploadFile = function(file) {
+  setTitleAndDescriptionText();//set title and description text
   var metadata = {
     snippet: {
-      title: titleText,//
+      title: titleText,
       description: descriptionText,
       tags: this.tags,
       categoryId: this.categoryId
@@ -233,6 +238,7 @@ UploadVideo.prototype.pollForVideoStatus = function() {
             break;
           // The video was successfully transcoded and is available.
           case 'processed':
+            //$("#my-video-id").val(this.videoId);//setting the video id from data to existing readonly video input field
             $('#player').append(response.items[0].player.embedHtml);
             $('#post-upload-status').append('<li>Final status.</li>');
             break;

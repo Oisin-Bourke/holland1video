@@ -1,4 +1,4 @@
-﻿//alert("auth.js loaded");
+﻿alert("auth.js loaded");
 
 // The client ID is obtained from the {{ Google Cloud Console }}
 // at {{ https://cloud.google.com/console }}.

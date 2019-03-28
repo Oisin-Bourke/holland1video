@@ -38,7 +38,7 @@ namespace RazorPagesHolland.Pages.Hollands
             _context.Holland.Add(Holland);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Admin");//after form submission return to index
         }
     }
 }
