@@ -25,6 +25,8 @@ namespace RazorPagesHolland
                         GetRequiredService<RazorPagesHollandContext>();
                     context.Database.Migrate();
                     SeedData.Initialize(services);
+
+                    //context.Database.EnsureCreated(); ===> this may be a temp option early in dev (see docs)
                 }
                 catch (Exception ex)
                 {

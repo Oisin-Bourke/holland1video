@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -39,6 +40,9 @@ namespace RazorPagesHolland.Models
         //auto-required
         [Column(TypeName = "float(10, 6)")]
         public float Longitude { get; set; }
+
+        //each video has many survey instances 
+        public ICollection<Survey> Surveys { get; set; }
 
     }
 }

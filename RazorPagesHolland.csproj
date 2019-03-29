@@ -24,5 +24,6 @@
   <ItemGroup>
     <Content Remove="tsconfig.json" />
     <Content Remove="wwwroot\js\test.js" />
+    <Content Remove="wwwroot\js\animation\animate.js" />
   </ItemGroup>
 </Project>
