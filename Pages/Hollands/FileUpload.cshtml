@@ -1,0 +1,13 @@
+﻿@page
+@model RazorPagesHolland.Pages.Hollands.FileUploadModel
+@{
+    ViewData["Title"] = "FileUpload";
+}
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="exampleFormControlFile1">Upload Excel File for Survey Tracks</label>
+        <input type="file" asp-for="Upload" class="form-control-file" />
+    </div>
+    <input class="btn btn-primary" type="Submit"/>
+</form>
+

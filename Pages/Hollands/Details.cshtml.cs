@@ -20,6 +20,7 @@ namespace RazorPagesHolland.Pages.Hollands
 
         public Holland Holland { get; set; }
 
+        // static string to hold the coordinates ==> pass to view
         public static string rovCoordinates;
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -29,7 +30,7 @@ namespace RazorPagesHolland.Pages.Hollands
                 return NotFound();
             }
 
-            //make holland instance by id accessible in view and include the its surveys  
+            //make holland instance by id accessible in view and include item's surveys  
             Holland = await _context.Holland
                                     .Include(s => s.Surveys)
                                     .AsNoTracking()
@@ -43,11 +44,13 @@ namespace RazorPagesHolland.Pages.Hollands
                 return NotFound();
             }
 
-            //generating the rovCoordinates:
+            if (Holland.Surveys.Any()==false)
+            {
+                return NotFound();     
+            }
 
-
+            //generating json string rovCoordinates from Survey model:
             rovCoordinates = "[";
-
             foreach (var item in Holland.Surveys)
             {
                 rovCoordinates += "{";
@@ -55,12 +58,7 @@ namespace RazorPagesHolland.Pages.Hollands
                 rovCoordinates += string.Format("'lng': '{0}',", item.Longitude);
                 rovCoordinates += "},";
             }
-
             rovCoordinates += "]";
-
-
-            
-            
 
             return Page();
         }

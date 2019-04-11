@@ -35,8 +35,9 @@ namespace RazorPagesHolland.Pages.Hollands
                 return Page(); //he Page method creates a PageResult object that renders the Create.cshtml page.
             }
 
-            _context.Holland.Add(Holland);
-            await _context.SaveChangesAsync();
+            _context.Holland.Add(Holland);//add video data
+
+            await _context.SaveChangesAsync();//save changes
 
             return RedirectToPage("./Admin");//after form submission return to index
         }

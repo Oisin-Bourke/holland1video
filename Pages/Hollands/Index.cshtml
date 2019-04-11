@@ -16,12 +16,6 @@
 
 <h1>ROV Holland I Video Catalogue</h1>
 
-<!--
-<p>
-    <a asp-page="Create">Create New Entry</a>
-</p>
-    -->
-
 <div class="tab-container">
 
     <!-- Nav tabs -->
@@ -167,7 +161,6 @@
                     google.maps.event.addListener(marker, "click", function (e) {
                         infoWindow.setContent('<a href="@Url.Page("Details")?id=' + data.ID + '">Details</a>');
                         infoWindow.open(map, marker);
-
                     });
                 })(marker, data);
             }

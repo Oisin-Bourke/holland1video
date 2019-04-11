@@ -51,13 +51,11 @@
     <dl class="row">
         <dd class="embedded-item col">
             <div id="player"></div>
-            <!--<iframe width="560" height="315" src=@* @Html.Raw(Model.Holland.VideoUrl) *@ frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
         </dd>
         <dd class="embedded-item col">
             <div id="map"></div>
         </dd>
     </dl>
-
     <div>
         <button id="play" type="button" class="btn btn-secondary">Play</button>
 
@@ -65,24 +63,36 @@
 
         <button id="pause" type="button" class="btn btn-secondary">Pause</button>
     </div>
-
-
 </div>
 <div>
     <!--<a asp-page="./Edit" asp-route-id="@Model.Holland.ID">Edit</a>-->
     <a asp-page="./Index">Back to List</a>
+
+    @{
+        if (!Model.Holland.Surveys.Any())
+        {
+
+            <p>no elements</p>
+        }
+
+    }
+    
+
+
+
 </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
-<script>
+<script type="text/javascript">
+
     function initMap() {
 
-        //get dive location to centre map:
+        //get dive location to centre map from survery at index 0:
         var diveLocation = { lat: @Html.Raw(Model.Holland.Surveys.ElementAt(0).Latitude), lng : @Html.Raw(Model.Holland.Surveys.ElementAt(0).Longitude)  }; 
         var map = new google.maps.Map(document.getElementById('map'), {
             center: diveLocation,
-            zoom: 6,
+            zoom: 17,
             mapTypeId: 'terrain'
         });
 
@@ -93,6 +103,7 @@
             strokeColor: '#FFCC00'
         };
 
+    //sample hard-coded coordinates...
     /*
         var rovCoordinates = [
             {lat: 53.192858, lng: -9.673898},
@@ -103,23 +114,24 @@
         ];
     */
 
-        //get survey coordinates string array from Model
+        //get survey coordinates string array from the Page Model
         var rovCoordinates=@Html.Raw(DetailsModel.rovCoordinates);
 
-        var rovPath = [];
-          
+        var rovPath = [];//declare js empty array
+
+        //iterate the json coordinates pushing each 'stone' to the final path
         for (i = 0; i < rovCoordinates.length; i++){
             var data = rovCoordinates[i];
             var stone =  {lat: parseFloat(data.lat), lng: parseFloat(data.lng)};
-            console.log(stone);
-            rovPath.push(stone);//add each object to the rov path array 
+            //console.log(stone);
+            rovPath.push(stone);//add each 'stone' object to the rov path array
         }
-        
+
 
         // Create the polyline and add the symbol to it via the 'icons' property.
         //  Make line global
         line = new google.maps.Polyline({
-                path: rovPath,
+                path: rovPath,//the path from survey model
                 strokeColor: '#FF0000',
                 strokeWeight: 2,
                 strokeOpacity: 1,
@@ -130,31 +142,33 @@
             map: map
            });
 
-                //animateCircle(line);
-            }
+        }
 
 
     // Use the DOM setInterval() function to change the offset of the symbol at fixed intervals.
     function animateCircle(line) {
 
-        var timePlayed = player.getCurrentTime();
+        var timePlayed = player.getCurrentTime();//get current time from video
 
         console.log("time played: "+timePlayed);
 
         percent = 0;
 
-        //if time playes > 1 second recalculate percent for animation:
+        //if time played > 1 second recalculate percent complete for animation:
         if(timePlayed > 1.0){
             percent = timePlayed * 100 / duration;
-            console.log("if percent: "+percent);
+            console.log("re-calc percent %: "+percent);
         }
 
         //make startAnimation global so can call from youtube buttons
             startAnimation = window.setInterval(function() {
 
-                percent = percent + (duration / 10000);
+                 //animation increment iteration (duration * ten to account for .1 setInterval loop)
+                percent = percent + (100 / (duration * 10));
 
-                if(percent > 99.9){
+                console.log("animation %"+percent);
+
+                if(percent > 99.99){
                     window.clearInterval(startAnimation);//stop animation
                     console.log("animation end");
                 }
@@ -166,7 +180,7 @@
         }, 100);//the repeating interval (.1 seconds)
     }
 
-    //YouTube===========================================================
+    //=== YouTube ===========================================================
 
     // 2. This code loads the IFrame Player API code asynchronously.
 
@@ -183,7 +197,7 @@
             height: '315',
             width: '100%',
             playerVars: {
-                'controls': 1//0 does not remove controls fully!
+                'controls': 0//does not remove controls fully!
             },
             videoId: '@Html.Raw(Model.Holland.VideoUrl)',
             events: {
@@ -194,7 +208,7 @@
 
     }
 
-    //set duration once when video 'player' ready:
+    //set duration for animation once when video 'player' ready:
     function setDuration(){
 
         duration = player.getDuration();
@@ -202,8 +216,7 @@
 
     }
 
-    //add method to reset every minute
-
+    //catch buffering events and re-calc percentage animation
     function onPlayerStateChange(event){
 
         if(event.data == YT.PlayerState.BUFFERING){
@@ -212,13 +225,13 @@
 
             if(resetTime > 1.0 ) {
                 percent = resetTime * 100 / duration;
-                console.log("if buffering: " + percent);
+                console.log("buffering %" + percent);
             }
         }
 
     }
 
-    //buttons================================================
+    //=== Custom Buttons ================================================
 
     //my play button:
     $("#play").click(function() {
@@ -243,11 +256,10 @@
         window.clearInterval(startAnimation);
 
     });
-
+    
 </script>
 
-
-
+<!-- Replace the value of the key parameter with your own API key. -->
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVHiK8K4NbQ01iqcB9GaSbkp1DLWGZNvM&callback=initMap">
 </script>

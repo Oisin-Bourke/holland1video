@@ -12,14 +12,18 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.1" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.4" />
+    <PackageReference Include="NPOI" Version="2.4.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="wwwroot\js\youtube\" />
+    <Folder Include="App_Data\" />
+    <Folder Include="uploads\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Pages\Hollands\Details.js" />
+    <None Remove="uploads\survey_data_1.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="tsconfig.json" />

@@ -22,5 +22,9 @@ namespace RazorPagesHolland.Models
         public Holland Holland { get; set; }//Each survey instance has one holland video instance  
 
 
+        public override string ToString()
+        {
+            return string.Format("[Survey: SurveyID={0}, TimeInterval={1}, VesselNumber={2}, Latitude={3}, Longitude={4}, HollandID={5}]", SurveyID, TimeInterval, VesselNumber, Latitude, Longitude, HollandID);
+        }
     }
 }
